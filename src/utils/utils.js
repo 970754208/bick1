@@ -17,5 +17,15 @@ export default {
         min = formate(min);
         s = formate(s);
         return y + '-' + mon + '-' + date + ' ' + h + ':' + min + ':' + s;
+    },
+    pagination(data, callback) {
+        return {
+            current: data.result.current,
+            pageSize: data.result.pageSize,
+            total: data.result.total,
+            onChange: current => {
+                callback(current)
+            }
+        }
     }
 }

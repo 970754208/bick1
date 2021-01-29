@@ -24,7 +24,7 @@ export default class Carousels extends Component {
                     </Carousel>
                 </Card>
                 <Card title="图片carousel" className="card-wrap slider-wrap">
-                    <Carousel autoplay>
+                    <Carousel autoplay className="carousel-img">
                         <div>
                             <img src="/carousel-img/carousel-1.jpg" alt=""/>
                         </div>

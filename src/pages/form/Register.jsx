@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Button, Card, Checkbox, DatePicker, Form, Input, InputNumber, message, Radio, Select, Switch, TimePicker } from 'antd'
+import { Button, Card, Checkbox, DatePicker, Form, Icon, Input, InputNumber, message, Radio, Select, Switch, TimePicker, Upload } from 'antd'
 import moment from 'moment'
+import './reg.less'
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
@@ -34,17 +35,47 @@ const autoSize = {
 }
 
 class Register extends Component {
+    state = {
+        userImg: null,
+        loading: false
+    }
     handleSubmit = () => {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 message.success(`${values.userName}，恭喜你注册成功，密码为${values.userPwd}`)
+                console.log(values)
             }
         })
     }
+
+    getBase64 = (img, callback)=>{
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
+    }
+
+    handleChange = (info) => {
+        if (info.file.status === 'uploading') {
+            this.setState({ loading: true });
+            return;
+        }
+        if (info.file.status === 'done') {
+            // Get this url from response in real world.
+            this.getBase64(info.file.originFileObj, imageUrl => this.setState({
+                userImg:imageUrl,
+                loading: false,
+            }));
+        }
+    }
+
     render() {
         const { getFieldDecorator } = this.props.form;
+        const uploadButton = <div>
+            <Icon type={this.state.loading? 'loading': 'plus'} /><br/>
+            upload
+        </div>
         return (
-            <div>
+            <div className="register">
                 <Card title="注册表单">
                     <Form layout="horizontal" onSubmit={this.handleSubmit}>
                         <FormItem label="用户名" {...formLayout}>
@@ -168,10 +199,20 @@ class Register extends Component {
                         </FormItem>
                         <FormItem label="头像" {...formLayout}>
                             {
-                                getFieldDecorator('userImg', {
-                                    initialValue: ''
-                                })(
-                                    <Input />
+                                getFieldDecorator('upload')(
+                                    <Upload 
+                                        listType="picture-card"
+                                        // action="//jsonplaceholder.typicode.com/posts/"
+                                        showUploadList={true}
+                                        onChange={this.handleChange}
+                                        fileList={null}
+                                    >
+                                        {
+                                            this.state.userImg
+                                            ? <img src={this.state.userImg} alt=""/>
+                                            : uploadButton
+                                        }
+                                    </Upload>
                                 )
                             }
                         </FormItem>
