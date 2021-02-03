@@ -1,6 +1,10 @@
 @import './style/default.less';
 @import './style/loading.less';
 
+li {
+    list-style-type: none;
+    overflow: hidden;
+}
 .container {
     .nav-left {
         height: 100vh;
@@ -14,4 +18,18 @@
     .content {
         padding: 20px;
     }
+}
+
+.content-wrap {
+    margin-top: -3px;
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    .ant-table-content {
+        margin-left: -1px;
+        margin-right: -1px;
+    }
+}
+
+.content {
+    padding: 50px;
 }

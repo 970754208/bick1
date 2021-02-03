@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import App from './App'
 import Login from './pages/login'
 import Admin from './Admin'
+import Common from './Common'
 import Home from './pages/home'
 import Buttons from './pages/ui/Buttons'
 import Modal from './pages/ui/Modals'
@@ -15,6 +16,10 @@ import Carousel from './pages/ui/Carousel'
 import FormLogin from './pages/form/Login'
 import Register from './pages/form/Register'
 import BasicTable from './pages/table/BasicTable'
+import HighTable from './pages/table/HighTable'
+import City from './pages/city/City'
+import Order from './pages/order'
+import OrderDetail from './pages/order/detail'
 import NoMatch from './pages/nomatch'
 
 export default class ERouter extends Component {
@@ -38,9 +43,17 @@ export default class ERouter extends Component {
                                 <Route path="/admin/form/login" component={FormLogin} />
                                 <Route path="/admin/form/reg" component={Register} />
                                 <Route path="/admin/table/basic" component={BasicTable} />
+                                <Route path="/admin/table/high" component={HighTable} />
+                                <Route path="/admin/city" component={City} />
+                                <Route path="/admin/order" component={Order} />
                                 <Route component={NoMatch} />
                             </Switch>
                         </Admin>
+                    } />
+                    <Route path="/common" render={()=>
+                        <Common>
+                            <Route path="/common/order/detail/:orderId" component={OrderDetail} />
+                        </Common>
                     } />
                 </App>
             </Router>

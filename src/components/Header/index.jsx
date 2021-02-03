@@ -31,20 +31,36 @@ export default class index extends Component {
     render() {
         let city = this.state.weather && this.state.weather.results[0].location.name;
         let weather = this.state.weather && this.state.weather.results[0].now.text;
+        let { menuType } = this.props;
         return (
             <div className="header">
                 <Row className="header-top" key={1}>
-                    <span>欢迎，{this.state.userName}</span>
-                    <a href="#">退出</a>
-                </Row>
-                <Row className="breadcrumb" key={2}>
-                    <Col span={4} className="breadcrumb-title" key={1}>首页</Col>
-                    <Col span={20} className="weather" key={2}>
-                        <span className="date">{this.state.sysTime}</span>
-                        <span className="city">{city}</span>
-                        <span className="weather-detail">{weather}</span>
+                    {
+                        menuType
+                        ? <Col span={6} className="logo">
+                            <img src="/assets/logo-ant.svg" alt=""/>
+                            <span>IMooc 通用管理系统</span>
+                        </Col>
+                        : ''
+                    }
+                    <Col span={menuType? 18: 24}>
+                        <span>欢迎，{this.state.userName}</span>
+                        <a href="#">退出</a>
                     </Col>
                 </Row>
+                {
+                    menuType
+                    ? ''
+                    : <Row className="breadcrumb" key={2}>
+                        <Col span={4} className="breadcrumb-title" key={1}>首页</Col>
+                        <Col span={20} className="weather" key={2}>
+                            <span className="date">{this.state.sysTime}</span>
+                            <span className="city">{city}</span>
+                            <span className="weather-detail">{weather}</span>
+                        </Col>
+                    </Row>
+                    
+                }
             </div>
         )
     }
