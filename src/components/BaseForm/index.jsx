@@ -29,7 +29,7 @@ class BaseForm extends Component {
                         getFieldDecorator(field, {
                             initialValue
                         })(
-                            <Input placeholder={placeholder} />
+                            <Input placeholder={placeholder} width={{width}} />
                         )
                     }
                 </FormItem>
@@ -70,6 +70,17 @@ class BaseForm extends Component {
                     }
                 </FormItem>
                 formItemList.push(time);
+            }else if(item.type === 'DATE') {
+                const date = <FormItem label={label} key={field}>
+                    {
+                        getFieldDecorator(field, {
+                            initialValue
+                        })(
+                            <DatePicker placeholder={placeholder} />
+                        )
+                    }
+                </FormItem>
+                formItemList.push(date);
             }
         })
         return formItemList;

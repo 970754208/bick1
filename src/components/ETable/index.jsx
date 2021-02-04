@@ -32,7 +32,7 @@ export default class ETable extends Component {
         }
     }
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         const { columns, dataSource, pagination, selectedRowKeys} = this.props;
         let row_selection = this.props.rowSelection;
         const rowSelection = {

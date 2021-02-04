@@ -4,6 +4,7 @@ import { Modal } from 'antd'
 import Utils from '../utils/utils'
 export default class Axios {
     static requestList(_this, url, params, isMock) {
+        params.isShowLoading = true;
         let data = {
             params
         }

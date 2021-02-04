@@ -20,6 +20,8 @@ import HighTable from './pages/table/HighTable'
 import City from './pages/city/City'
 import Order from './pages/order'
 import OrderDetail from './pages/order/detail'
+import User from './pages/user'
+import BikeMap from './pages/map/BikeMap'
 import NoMatch from './pages/nomatch'
 
 export default class ERouter extends Component {
@@ -46,6 +48,8 @@ export default class ERouter extends Component {
                                 <Route path="/admin/table/high" component={HighTable} />
                                 <Route path="/admin/city" component={City} />
                                 <Route path="/admin/order" component={Order} />
+                                <Route path="/admin/user" component={User} />
+                                <Route path="/admin/bikeMap" component={BikeMap} />
                                 <Route component={NoMatch} />
                             </Switch>
                         </Admin>
