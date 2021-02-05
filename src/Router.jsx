@@ -25,6 +25,7 @@ import BikeMap from './pages/map/BikeMap'
 import Bar from './pages/echarts/Bar'
 import Pie from './pages/echarts/Pie'
 import Line from './pages/echarts/Line'
+import Rich from './pages/rich'
 import NoMatch from './pages/nomatch'
 
 export default class ERouter extends Component {
@@ -56,6 +57,7 @@ export default class ERouter extends Component {
                                 <Route path="/admin/charts/bar" component={Bar} />
                                 <Route path="/admin/charts/pie" component={Pie} />
                                 <Route path="/admin/charts/line" component={Line} />
+                                <Route path="/admin/rich" component={Rich} />
                                 <Route component={NoMatch} />
                             </Switch>
                         </Admin>
